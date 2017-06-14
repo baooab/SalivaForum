@@ -43,7 +43,7 @@ class UserController extends Controller
         $user->confirm_code = str_random(48);
         $user->save();
 
-        return redirect()->route('user.login')
+        return redirect()->route('login')
             ->with('status', [
                 'type' => 'success',
                 'info'=> '账号激活成功，请使用 ' . $user->email . ' 账号登录体验！'

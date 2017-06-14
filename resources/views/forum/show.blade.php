@@ -1,5 +1,56 @@
 @extends('layouts.app')
 
+@push('styles')
+    <style>
+
+        body {
+            font-size: 15px;
+        }
+
+        /* 帖子目录样式 */
+
+        .BlogAnchor {
+            background: #f4f7f9;
+            padding: 10px;
+            line-height: 180%;
+        }
+        .BlogAnchor p {
+            color: #15a230;
+            margin-bottom: 0.3em;
+        }
+
+        .BlogAnchor .AnchorContent {
+            padding: 5px 0px;
+            list-style: none;
+        }
+
+        .BlogAnchor .AnchorContent li {
+            cursor: pointer;
+        }
+
+        .BlogAnchor .AnchorContent li.active {
+            background-color: #eee;
+            border-radius: 5px;
+        }
+
+        #AnchorContentToggle {
+            color: #FFF;
+            display: block;
+            line-height: 20px;
+            background: cornflowerblue;
+            font-style: normal;
+            text-align: center;
+            padding: 4px;
+        }
+        .BlogAnchor a:hover {
+            color: cornflowerblue;
+        }
+        .BlogAnchor a {
+            text-decoration: none;
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="jumbotron">
         <div class="container">
@@ -36,8 +87,8 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
-                <div class="blog-post">
+            <div class="col-sm-9">
+                <div id="blog-post">
                     {!! Parsedown::instance()->text($discussion->body) !!}
                 </div>
 
@@ -78,6 +129,49 @@
                     @endif
                 </div>
             </div>
+            <div id="aside" class="col-sm-3 hidden-xs">
+                <div class="BlogAnchor">
+                    <p><b id="AnchorContentToggle" title="收起" style="cursor:pointer;">目录[-]</b></p>
+                    <ul class="AnchorContent" id="AnchorContent"></ul>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/jquery.sticky.js') }}"></script>
+    <script>
+        // 生成帖子目录
+        $("#blog-post").find("h2,h3").each(function(i,item) {
+            var tag = $(item).get(0).localName;
+            $(item).attr("id", "wow" + i);
+            $("#AnchorContent").append('<li><a class="new'+tag+' anchor-link" href="#wow'+ i +'" id="#wow'+i+'">'+ "- "+$(this).text()+'</a></li>');
+            $(".newh2").css("margin-left", 0);
+            $(".newh3").css("margin-left", 20);
+        });
+        $("#AnchorContentToggle").click(function(){
+            var text = $(this).html();
+            if(text=="目录[-]"){
+                    $(this).html("目录[+]");
+                    $(this).attr({"title":"展开"});
+                }else{
+                    $(this).html("目录[-]");
+                    $(this).attr({"title":"收起"});
+                }
+            $("#AnchorContent").toggle();
+        });
+        $(".anchor-link").click(function(e) {
+            e.preventDefault();
+            $("html,body").animate({ scrollTop: $($(this).attr("id")).offset().top }, 650);
+        });
+
+
+        if ($( "ul.AnchorContent" ).has( "li" ).length < 1) {
+            $('#aside').hide();
+        } else {
+            // 帖子目录悬停效果
+            $(".BlogAnchor").sticky({ topSpacing: 20 });
+        }
+    </script>
+@endpush

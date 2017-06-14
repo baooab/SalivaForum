@@ -18,6 +18,7 @@ class CreateDiscussionsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('last_user_id');
             $table->string('title');
+            $table->string('slug'); // alter table discussions  add column slug varchar(191);
             $table->text('body');
             $table->timestamps();
 

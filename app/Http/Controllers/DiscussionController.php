@@ -51,8 +51,6 @@ class DiscussionController extends Controller
 
     public function store(StorePostRequest $request)
     {
-        dd($request->all());
-
         $data = $request->only(['title', 'body']);
         $data = array_merge($data, [
            'slug' => str_slug($request->input('slug')),
@@ -67,7 +65,7 @@ class DiscussionController extends Controller
             $discussion->categories()->attach($categories);
         }
 
-        return redirect()->route('discussions.show', ['id' => $discussion->title]);
+        return redirect()->route('discussions.show', ['id' => $discussion->slug]);
     }
 
     public function edit($id)

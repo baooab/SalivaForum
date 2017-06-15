@@ -107,7 +107,7 @@
                                     </a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading">{{ $comment->user->name }}</h4>
+                                    <h4 class="media-heading">{{ $comment->user->name }} <small>{{ $comment->created_at }}</small></h4>
                                     {!! Parsedown::instance()->text($comment->body) !!}
                                 </div>
                             </div>

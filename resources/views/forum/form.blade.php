@@ -4,7 +4,11 @@
     {!! Form::hidden('slug', null, ['v-model' => 'translation']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('body', '内容') !!}
+    <label for="body">内容
+        <small style="display: inline-block; margin-left: .2rem;">
+            <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/" target="_blank">Markdown 怎么写？</a>
+        </small>
+    </label>
     {!! Form::textarea('body', null, [
             'rows' => '20',
             'class' => 'form-control',

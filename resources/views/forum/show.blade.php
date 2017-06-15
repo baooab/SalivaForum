@@ -121,6 +121,11 @@
                         {!! Form::open(['url' => route('comments.store'), 'method' => 'post']) !!}
                             {!! Form::hidden('discussion_id', $discussion->id) !!}
                             <div class="form-group">
+                                <label for="body">
+                                    <small style="display: inline-block; margin-left: .2rem;">
+                                        <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/" target="_blank">Markdown 怎么写？</a>
+                                    </small>
+                                </label>
                                 {!! Form::textarea('body', null, ['class' => 'form-control', 'placeholder' => '支持Markdown格式']) !!}
                             </div>
                             <div class="form-group">

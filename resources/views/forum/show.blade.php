@@ -7,7 +7,7 @@
             font-size: 15px;
         }
 
-        #blog-post img {
+        #blog-post img, #blog-comments .media-body img {
             max-width: 100%;
         }
 
@@ -97,7 +97,7 @@
 
                 @if(count($discussion->comments) > 0)
                     <hr>
-                    <div class="blog-comments">
+                    <div id="blog-comments">
                         @foreach($discussion->comments as $comment)
                             <div class="media">
                                 <div class="media-left">
@@ -181,5 +181,7 @@
             // 帖子目录悬停效果
             $(".BlogAnchor").sticky({ topSpacing: 20 });
         }
+		
+		$('table').addClass('table table-striped');
     </script>
 @endpush

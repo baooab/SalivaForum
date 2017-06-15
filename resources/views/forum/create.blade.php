@@ -12,7 +12,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">发布新帖子</div>
                     <div class="panel-body">

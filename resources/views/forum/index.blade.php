@@ -29,7 +29,7 @@
                             </h4>
                             <div class="media-conversation-meta">
                                 <span class="media-conversation-replies">
-                                    <a href="{{ route('discussions.show', ['id' => $discussion->slug] ) }}#reply">{{ count($discussion->comments) }}</a>
+                                    <a href="{{ route('discussions.show', ['id' => $discussion->slug] ) }}#post-comments">{{ count($discussion->comments) }}</a>
                                 回复
                                 </span>
                             </div>

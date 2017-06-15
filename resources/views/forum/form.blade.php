@@ -5,7 +5,12 @@
 </div>
 <div class="form-group">
     {!! Form::label('body', '内容') !!}
-    {!! Form::textarea('body', null, ['class' => 'form-control', 'placeholder' => '支持Markdown格式']) !!}
+    {!! Form::textarea('body', null, [
+            'rows' => '20',
+            'class' => 'form-control',
+            'style' => 'resize: vertical; overflow: auto;',
+            'placeholder' => '支持Markdown格式'
+    ]) !!}
 </div>
 <div class="form-group">
     {!! Form::label('categories', '分类') !!}

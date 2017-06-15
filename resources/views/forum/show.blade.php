@@ -7,6 +7,10 @@
             font-size: 15px;
         }
 
+        #blog-post img {
+            max-width: 100%;
+        }
+
         /* 帖子目录样式 */
 
         .BlogAnchor {
@@ -15,7 +19,6 @@
             line-height: 180%;
         }
         .BlogAnchor p {
-            color: #15a230;
             margin-bottom: 0.3em;
         }
 
@@ -87,7 +90,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-md-9 col-sm-8">
                 <div id="blog-post">
                     {!! Parsedown::instance()->text($discussion->body) !!}
                 </div>
@@ -113,7 +116,7 @@
                 @endif
 
                 <hr>
-                <div id="reply" class="post-comments">
+                <div id="post-comments">
                     @if(Auth::check())
                         {!! Form::open(['url' => route('comments.store'), 'method' => 'post']) !!}
                             {!! Form::hidden('discussion_id', $discussion->id) !!}
@@ -129,7 +132,7 @@
                     @endif
                 </div>
             </div>
-            <div id="aside" class="col-sm-3 hidden-xs">
+            <div id="aside" class="col-md-3 col-sm-4 hidden-xs">
                 <div class="BlogAnchor">
                     <p><b id="AnchorContentToggle" title="收起" style="cursor:pointer;">目录[-]</b></p>
                     <ul class="AnchorContent" id="AnchorContent"></ul>

@@ -10,6 +10,9 @@
             <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name', '乱炖社区') }}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url('links') }}">采集</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
                     <li><a href="{{ route('login') }}">登录</a></li>

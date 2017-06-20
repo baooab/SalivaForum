@@ -2,9 +2,11 @@
 
 @push('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/select2.min.css') }}">
-    <style>
-        .navbar {
-            margin-bottom: 20px;
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/simplemde.min.css') }}">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css"> -->
+    <style type="text/css">
+        .editor-toolbar.fullscreen, .CodeMirror-fullscreen, .editor-preview-side {
+            z-index:1001;
         }
     </style>
 @endpush
@@ -43,6 +45,9 @@
 
 @push('scripts')
     <script type="text/javascript" src="{{ asset('js/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/simplemde.min.js') }}"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script> -->
     @include('forum.translate_script')
     @include('forum.select2_script')
+    @include('forum.simplemde_script')
 @endpush

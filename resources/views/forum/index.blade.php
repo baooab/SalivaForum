@@ -11,6 +11,10 @@
             margin-top: -6px;
             right: 1rem;
         }
+
+        .navbar {
+            margin-bottom: 0px;
+        }
     </style>
 @endpush
 

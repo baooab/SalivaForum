@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @push('styles')
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css"> -->
     <style>
-
         body {
             font-size: 15px;
         }
@@ -50,6 +50,10 @@
         }
         .BlogAnchor a {
             text-decoration: none;
+        }
+
+        .navbar {
+            margin-bottom: 0px;
         }
     </style>
 @endpush
@@ -149,6 +153,7 @@
 
 @push('scripts')
     <script src="{{ asset('js/jquery.sticky.js') }}"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script> -->
     <script>
         // 生成帖子目录
         $("#blog-post").find("h2,h3").each(function(i,item) {
@@ -174,14 +179,17 @@
             $("html,body").animate({ scrollTop: $($(this).attr("id")).offset().top }, 650);
         });
 
-
         if ($( "ul.AnchorContent" ).has( "li" ).length < 1) {
             $('#aside').hide();
         } else {
             // 帖子目录悬停效果
             $(".BlogAnchor").sticky({ topSpacing: 20 });
         }
-		
+
+        // 修改表格为响应式的
 		$('table').addClass('table table-striped').css("margin-bottom", 0).wrap( "<div class='table-responsive'></div>");
+
+        // 高亮代码
+        // hljs.initHighlightingOnLoad();
     </script>
 @endpush

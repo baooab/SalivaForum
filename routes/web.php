@@ -31,6 +31,7 @@ Route::post('user/avatar', 'UserController@changeAvatar')->name('update.avatar')
 Route::get('/', 'DiscussionController@home')->name('home');
 Route::resource('discussions', 'DiscussionController');
 Route::resource('comments', 'CommentController');
+Route::get('user/{id}/discussions', 'UserController@discussions')->name('user.discussions');
 
 // 采集功能
 

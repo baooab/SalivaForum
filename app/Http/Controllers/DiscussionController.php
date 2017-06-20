@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Discussion;
 use App\Category;
+use App\User;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
@@ -25,7 +26,12 @@ class DiscussionController extends Controller
                     ->orderBy('updated_at', 'desc')
                     ->paginate(15);
 
-        return view('forum.index', compact('discussions'));
+        $users = User::withCount('discussions')
+                ->orderBy('discussions_count', 'desc')
+                ->take(10)
+                ->get();
+
+        return view('forum.index', compact('discussions', 'users'));
     }
 
     public function show($id)

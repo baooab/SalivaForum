@@ -7,6 +7,7 @@ use App\Http\Requests\UserSigninRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Mail\ConfirmUserEmail;
 use App\User;
+use App\Discussion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -191,5 +192,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function discussions($id)
+    {
+        $user = User::findOrFail($id);
+
+        $discussions = Discussion::with('user', 'categories')
+            ->where('user_id', $id)
+            ->orderBy('updated_at', 'desc')
+            ->paginate(24);
+
+        return view('user.discussions', compact('discussions', 'user'));
     }
 }

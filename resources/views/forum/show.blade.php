@@ -55,6 +55,13 @@
         .navbar {
             margin-bottom: 0px;
         }
+
+        /* Code 满行时能够水平滚动 */
+        pre code {
+            overflow: auto;
+            word-wrap: normal;
+            white-space: pre;
+        }
     </style>
 @endpush
 

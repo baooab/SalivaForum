@@ -42,7 +42,7 @@
 
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
-                                <h4>天哪！填个表单真麻烦</h4>
+                                <h4>天哪！注册真麻烦</h4>
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>

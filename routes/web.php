@@ -1,8 +1,5 @@
 <?php
 
-use App\Link;
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,52 +11,111 @@ use Illuminate\Http\Request;
 |
 */
 
-// 登录、注册
+/**
+ * 网站首页
+ */
 
-Route::get('login', 'UserController@login')->name('login');
-Route::post('login', 'UserController@signin');
-Route::get('register', 'UserController@register')->name('register');
-Route::post('register', 'UserController@store');
-Route::post('logout', 'UserController@logout')->name('logout');
-Route::get('verify/{confirm_code}', 'UserController@confirm')->name('verify');
+Route::group(['namespace' => 'Forum'], function () {
+
+    Route::get('/', 'DiscussionController@overview')->name('overview');
+
+});
+
+
+/**
+ * 认证系统
+ */
+
+Route::group(['namespace' => 'Auth'], function () {
+
+    // Sessions
+    Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLoginForm']);
+    Route::post('login', ['as' => 'login.post', 'uses' => 'LoginController@login']);
+    Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
+
+    // Registration
+    Route::get('register', ['as' => 'register', 'uses' => 'RegisterController@showRegistrationForm']);
+    Route::post('register', ['as' => 'register.post', 'uses' => 'RegisterController@register']);
+
+    // Password reset
+    Route::get('password/reset', ['as' => 'password.forgot', 'uses' => 'ForgotPasswordController@showLinkRequestForm']);
+    Route::post('password/email', ['as' => 'password.forgot.post', 'uses' => 'ForgotPasswordController@sendResetLinkEmail']);
+    Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'ResetPasswordController@showResetForm']);
+    Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'ResetPasswordController@reset']);
+
+    // Email address confirmation
+    Route::get('email-confirmation', ['as' => 'email.send_confirmation', 'uses' => 'EmailConfirmationController@send']);
+    Route::get('email-confirmation/{email_address}/{code}', ['as' => 'email.confirm', 'uses' => 'EmailConfirmationController@confirm']);
+
+});
+
+
+/**
+ * 论坛
+ */
+
+Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
+
+    // 首页
+
+    Route::get('/', 'DiscussionController@overview')
+        ->name('forum');
+
+    // 评论
+
+    Route::post('create-comment', 'CommentController@store')
+        ->name('comments.store');
+
+    // 帖子
+
+    Route::get('create-discussion', 'DiscussionController@create')
+        ->name('discussions.create');
+    Route::post('create-discussion', 'DiscussionController@store')
+        ->name('discussions.store');
+
+    Route::get('{discussion}', 'DiscussionController@show')
+        ->name('discussion');
+    Route::get('{discussion}/edit', 'DiscussionController@edit')
+        ->name('discussions.edit');
+    Route::put('{id}', 'DiscussionController@update')
+        ->name('discussions.update');
+});
+
+
+/**
+ * 用户
+ */
+
+Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@show']);
+Route::get('user/{username}', ['as' => 'profile', 'uses' => 'ProfileController@show']);
+// route parameter should use '{username}', but it seems not work! So I write '{id}'.
+Route::get('user/{id}/discussions', ['as' => 'profile.discussions', 'uses' => 'ProfileController@discussions']);
+
+/**
+ * 设置
+ */
+
+Route::get('settings', ['as' => 'settings.profile', 'uses' => 'Settings\ProfileController@edit']);
+Route::put('settings', ['as' => 'settings.profile.update', 'uses' => 'Settings\ProfileController@update']);
+Route::get('settings/avatar', ['as' => 'settings.avatar', 'uses' => 'Settings\AvatarController@edit']);
+Route::put('settings/avatar', ['as' => 'settings.avatar.update', 'uses' => 'Settings\AvatarController@update']);
+Route::get('settings/password', ['as' => 'settings.password', 'uses' => 'Settings\PasswordController@edit']);
+Route::put('settings/password', ['as' => 'settings.password.update', 'uses' => 'Settings\PasswordController@update']);
 
 Route::get('user/avatar', 'UserController@getAvatar')->name('show.avatar');
 Route::post('user/avatar', 'UserController@changeAvatar')->name('update.avatar');
 
-// 帖子功能
+/**
+ * 采集
+ */
 
-Route::get('/', 'DiscussionController@home')->name('home');
-Route::resource('discussions', 'DiscussionController');
-Route::resource('comments', 'CommentController');
-Route::get('user/{id}/discussions', 'UserController@discussions')->name('user.discussions');
+Route::group(['prefix' => 'collection', 'namespace' => 'Collection'], function () {
 
-// 采集功能
+    Route::get('/', 'CollectionController@overview')
+        ->name('collection.overview');
+    Route::get('create', 'CollectionController@create')
+        ->name('collection.create');
+    Route::post('store', 'CollectionController@store')
+        ->name('collection.store');
 
-Route::group(['prefix' => 'links'], function () {
-    Route::get('', function () {
-        $links = Link::with('user')->latest()->paginate(50);
-        return view('links.index', compact('links'));
-    });
-    Route::get('create', function () {
-        return view('links.create');
-    })->middleware('auth');
-    Route::post('store', function(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|max:255',
-            'url' => 'required|max:255',
-            'description' => 'present|max:255',
-        ]);
-        if ($validator->fails()) {
-            return back()
-                ->withInput()
-                ->withErrors($validator);
-        }
-        $link = new Link();
-        $link->user_id = Auth::user()->id;
-        $link->title = $request->title;
-        $link->url = $request->url;
-        $link->description = $request->description;
-        $link->save();
-        return redirect('/links');
-    })->middleware('auth');
 });

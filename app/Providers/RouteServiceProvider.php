@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Discussion;
+use App\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,7 +25,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Route::bind('email_address', function ($email) {
+            return User::findByEmail($email);
+        });
+        Route::bind('discussion', function ($discussion) {
+            return Discussion::findBySlug($discussion);
+        });
+        Route::bind('username', function ($username) {
+            return User::findByUsername($username);
+        });
 
         parent::boot();
     }

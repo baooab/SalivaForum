@@ -91,6 +91,7 @@ Route::get('user/{username}', ['as' => 'profile', 'uses' => 'ProfileController@s
 // route parameter should use '{username}', but it seems not work! So I write '{id}'.
 Route::get('user/{id}/discussions', ['as' => 'profile.discussions', 'uses' => 'ProfileController@discussions']);
 
+
 /**
  * 设置
  */
@@ -102,8 +103,11 @@ Route::put('settings/avatar', ['as' => 'settings.avatar.update', 'uses' => 'Sett
 Route::get('settings/password', ['as' => 'settings.password', 'uses' => 'Settings\PasswordController@edit']);
 Route::put('settings/password', ['as' => 'settings.password.update', 'uses' => 'Settings\PasswordController@update']);
 
-Route::get('user/avatar', 'UserController@getAvatar')->name('show.avatar');
-Route::post('user/avatar', 'UserController@changeAvatar')->name('update.avatar');
+/**
+ * 搜索
+ */
+
+Route::get('search', ['as' => 'search.enter', 'uses' => 'SearchController@enter']);
 
 /**
  * 采集

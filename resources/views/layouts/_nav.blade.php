@@ -1,8 +1,4 @@
 <style type="text/css">
-    * {
-        transition:all .5s;
-    }
-
     .navbar-form .search {
         border: none;
     }
@@ -26,9 +22,10 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="{{ route('collection.overview') }}">采集</a></li>
+                <li><a href="{{ route('search.enter') }}">搜索</a></li>
             </ul>
             <form class="navbar-form" style="
-                display: inline-block;
+                display: none;
                 margin-top: 16px;">
                 <input type="text" class="form-control search" placeholder="搜帖子">
             </form>

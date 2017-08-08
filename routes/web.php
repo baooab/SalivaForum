@@ -28,22 +28,22 @@ Route::group(['namespace' => 'Forum'], function () {
 
 Route::group(['namespace' => 'Auth'], function () {
 
-    // Sessions
+    // Session
     Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLoginForm']);
     Route::post('login', ['as' => 'login.post', 'uses' => 'LoginController@login']);
     Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
 
-    // Registration
+    // 注册
     Route::get('register', ['as' => 'register', 'uses' => 'RegisterController@showRegistrationForm']);
     Route::post('register', ['as' => 'register.post', 'uses' => 'RegisterController@register']);
 
-    // Password reset
+    // 密码重置
     Route::get('password/reset', ['as' => 'password.forgot', 'uses' => 'ForgotPasswordController@showLinkRequestForm']);
     Route::post('password/email', ['as' => 'password.forgot.post', 'uses' => 'ForgotPasswordController@sendResetLinkEmail']);
     Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'ResetPasswordController@showResetForm']);
     Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'ResetPasswordController@reset']);
 
-    // Email address confirmation
+    // Email 地址验证
     Route::get('email-confirmation', ['as' => 'email.send_confirmation', 'uses' => 'EmailConfirmationController@send']);
     Route::get('email-confirmation/{email_address}/{code}', ['as' => 'email.confirm', 'uses' => 'EmailConfirmationController@confirm']);
 
@@ -54,7 +54,7 @@ Route::group(['namespace' => 'Auth'], function () {
  * 论坛
  */
 
-Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
+Route::group(['prefix' => 'discussion', 'namespace' => 'Forum'], function () {
 
     // 首页
 

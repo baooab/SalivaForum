@@ -12,8 +12,8 @@ class SearchController extends Controller
     public function query(Request $request)
     {
         $query = $request->query('q');
-        if (! is_null($query))
-        {
+
+        if (! is_null($query)) {
             $discussions = Discussion::with('user')
                 ->select('id', 'title', 'body', 'slug', 'user_id')
                 ->where('title', 'like', "%{$query}%")

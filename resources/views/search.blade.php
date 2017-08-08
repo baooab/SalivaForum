@@ -50,7 +50,7 @@
                 <div class="col-md-12 search-content">
                     <div class="list-group search-result">
                         <template v-for="discussion in discussions">
-                            <a class="list-group-item" :href="'/forum/' + discussion.slug" target="_blank">{{ discussion.title }}</a>
+                            <a class="list-group-item" :href="'/forum/discussion' + discussion.slug" target="_blank">{{ discussion.title }}</a>
                         </template>
                         <template v-for="link in links">
                             <a class="list-group-item" :href="link.url" target="_blank">{{ link.title }}</a>

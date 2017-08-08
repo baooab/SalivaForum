@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers\Forum;
 
-use App\Http\Requests\DiscussionRequest;
 use App\User;
 use App\Models\Category;
 use App\Models\Discussion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\DiscussionRequest;
 
 class DiscussionController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['overview', 'show']]);
+    }
+
     public function overview()
     {
         $discussions = Discussion::with('categories')
@@ -50,8 +56,7 @@ class DiscussionController extends Controller
 
         $discussion = Discussion::create($data);
         $categories = $request->input('categories');
-        if ($categories)
-        {
+        if ($categories) {
             $discussion->categories()->attach($categories);
         }
 
@@ -77,8 +82,7 @@ class DiscussionController extends Controller
         $discussion->fill($data)->save();
 
         $categories = $request->input('categories');
-        if ($categories)
-        {
+        if ($categories) {
             $discussion->categories()->sync($categories);
         }
 

@@ -14,7 +14,7 @@
         /* 帖子目录样式 */
 
         .BlogAnchor {
-            background: #f4f7f9;
+            background: #eee;
             padding: 10px;
             line-height: 180%;
         }
@@ -32,7 +32,7 @@
         }
 
         .BlogAnchor .AnchorContent li.active {
-            background-color: #eee;
+            background: #eee;
             border-radius: 5px;
         }
 
@@ -114,7 +114,7 @@
                                     </a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading">{{ $comment->user->name }} <small>{{ $comment->created_at }}</small></h4>
+                                    <h4 class="media-heading">{{ $comment->user->username }} <small>{{ $comment->created_at }}</small></h4>
                                     {!! Parsedown::instance()->text($comment->body) !!}
                                 </div>
                             </div>
@@ -160,7 +160,7 @@
         $("#blog-post").find("h2,h3").each(function(i,item) {
             var tag = $(item).get(0).localName;
             $(item).attr("id", "wow" + i);
-            $("#AnchorContent").append('<li><a class="new'+tag+' anchor-link" href="#wow'+ i +'" id="#wow'+i+'">'+ "- "+$(this).text()+'</a></li>');
+            $("#AnchorContent").append('<li><a class="new'+tag+' anchor-link" href="#wow'+ i +'" id="#wow'+i+'">'+$(this).text()+'</a></li>');
             $(".newh2").css("margin-left", 0);
             $(".newh3").css("margin-left", 20);
         });

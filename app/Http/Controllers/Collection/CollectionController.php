@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class CollectionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['overview']]);
+    }
+
     public function overview()
     {
         $links = Link::with('user')->latest('updated_at')->paginate(50);

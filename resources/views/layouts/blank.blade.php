@@ -10,9 +10,8 @@
     <title>{{ config('app.name', '乱炖社区') }}</title>
     <style>
         * {
-            font-family: -apple-system, BlinkMacSystemFont,
-                "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
-                "Segoe UI Emoji", "Segoe UI Symbol";
+            font-family: "Microsoft JhengHei UI", -apple-system, BlinkMacSystemFont,
+                "Segoe UI", Helvetica, Arial, sans-serif;
         }
     </style>
     @stack('styles')

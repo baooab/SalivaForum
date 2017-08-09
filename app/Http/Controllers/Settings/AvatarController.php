@@ -25,8 +25,7 @@ class AvatarController extends Controller
 
         $avatar = $request->file('avatar');
 
-        if ($avatar->isValid())
-        {
+        if ($avatar->isValid()) {
             $user = Auth::user();
 
             $originExt = $avatar->getClientOriginalExtension();

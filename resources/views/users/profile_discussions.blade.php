@@ -35,30 +35,36 @@
                         <span>{{ $user->username }}的帖子</span>
                     </div>
                     <div class="panel-body">
-                        <div class="row">
-                            @forelse($discussions as $discussion)
-                                <div class="col-sm-4 col-md-3">
-                                    <div class="thumbnail text-center">
-                                        <p class="label text-black"><span class="date">{{ $discussion->updated_at }}</span></p>
-                                        <h4><a href="{{ route('discussion', [$discussion->slug] ) }}" target="_blank">{{ $discussion->title }}</a></h4>
-                                            <p style="color: #333; text-shadow: 0 0.5px #eee;">
-                                                {{ str_limit($discussion->body, 120) }}
-                                            </p>
-                                            <p class="label text-gray">
-                                                @if(count($discussion->categories) > 0)
-                                                    @foreach($discussion->categories as $category)
-                                                        {{ $category->name }}
-                                                        @if(! $loop->last)
-                                                            |
-                                                        @endif
-                                                    @endforeach
-                                                @endif
-                                            </p>
+                        @forelse ($discussions->chunk(4) as $chunk)
+                            <div class="row"> 
+                                @foreach($chunk as $discussion)
+                                    <div class="col-sm-4 col-md-3">
+                                        <div class="thumbnail text-center">
+                                            <p class="label text-black"><span class="date">{{ $discussion->updated_at }}</span></p>
+                                            <h4><a href="{{ route('discussion', [$discussion->slug] ) }}" target="_blank">{{ $discussion->title }}</a></h4>
+                                                <p style="color: #333; text-shadow: 0 0.5px #eee;">
+                                                    {{ str_limit($discussion->body, 120) }}
+                                                </p>
+                                                <p class="label text-gray">
+                                                    @if(count($discussion->categories) > 0)
+                                                        @foreach($discussion->categories as $category)
+                                                            {{ $category->name }}
+                                                            @if(! $loop->last)
+                                                                |
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                </p>
+                                        </div>
                                     </div>
-                                </div>
-                            @empty
-                                <p class="text-center">没有……</p>
-                            @endforelse
+                                @endforeach 
+                            </div>
+                        @empty
+                            <div class="row text-center">
+                                暂时还没有任何内容……
+                            </div>    
+                        @endforelse
+                        <div class="row">
                             <div class="col-md-12">
                                 {{ $discussions->links() }}
                             </div>

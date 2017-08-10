@@ -7,7 +7,7 @@
             {!! Form::open(['route' => 'settings.profile.update', 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
-                    <img class="img-circle" src="{{ Auth::user()->avatar }}" style="height: 128px;">
+                    <img class="img-circle" src="{{ Auth::user()->avatar }}" style="width: 128px; height: 128px;">
                 </div>
             </div>
 

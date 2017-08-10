@@ -65,6 +65,8 @@ class DiscussionController extends Controller
 
     public function edit(Discussion $discussion)
     {
+        $this->authorize('update discussions', $discussion);
+        
         $categories = Category::pluck('name', 'id')->all();
 
         return view('forum.discussions.edit', compact('discussion', 'categories'));
@@ -79,13 +81,16 @@ class DiscussionController extends Controller
         ]);
 
         $discussion = Discussion::findOrFail($discussion);
-        $discussion->fill($data)->save();
 
+        $this->authorize('update discussions', $discussion);
+
+        $discussion->fill($data)->save();
+        
         $categories = $request->input('categories');
         if ($categories) {
             $discussion->categories()->sync($categories);
         }
 
-        return redirect()->route('discussion', [$request->input('slug')]);
+        return redirect()->route('discussion', [$data['slug']]);
     }
 }

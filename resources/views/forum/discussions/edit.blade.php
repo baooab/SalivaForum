@@ -17,7 +17,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">更新帖子</div>
                     <div class="panel-body">
-                        {!! Form::Model($discussion, ['url' => route('discussions.update', [$discussion->id]), 'method' => 'PUT']) !!}
+                        {!! Form::Model($discussion, ['url' => route('discussions.update', ['id' => $discussion->id]), 'method' => 'PUT']) !!}
 
                         @include('forum.discussions._form')
 

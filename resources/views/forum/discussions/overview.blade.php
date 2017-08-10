@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="media-body">
                                     <span class="media-heading" style="display: block; margin-top: 6px;">
-                                        <a href="{{ route('profile.discussions', [$user->username]) }}" style="display: block;">
+                                        <a href="{{ route('profile.discussions', ['username' => $user->username]) }}" style="display: block;">
                                             <strong>{{ $user->username }}</strong>
                                             <span style="color: #999;">{{ $user->discussions_count }}篇帖</span>
                                         </a>

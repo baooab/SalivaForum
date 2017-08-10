@@ -88,8 +88,7 @@ Route::group(['prefix' => 'discussion', 'namespace' => 'Forum'], function () {
 
 Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@show']);
 Route::get('user/{username}', ['as' => 'profile', 'uses' => 'ProfileController@show']);
-// route parameter should use '{username}', but it seems not work! So I write '{id}'.
-Route::get('user/{id}/discussions', ['as' => 'profile.discussions', 'uses' => 'ProfileController@discussions']);
+Route::get('user/{username}/discussions', ['as' => 'profile.discussions', 'uses' => 'ProfileController@discussions']);
 
 
 /**

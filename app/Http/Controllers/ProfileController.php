@@ -13,10 +13,8 @@ class ProfileController extends Controller
         return view('users.profile', compact('user'));
     }
 
-    public function discussions($username)
+    public function discussions(User $user)
     {
-        $user = User::findByUsername($username);
-
         $discussions = Discussion::with('user', 'categories')
             ->where('user_id', $user->id)
             ->latest('updated_at')

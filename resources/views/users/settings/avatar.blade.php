@@ -6,7 +6,7 @@
         <div class="panel-body">
             <img src="{{ asset(Auth::user()->avatar) }}"
                  class="img-circle img-responsive"
-                 style="width: 128px;height: 128px; margin: 0 auto; margin-bottom: 1.25rem;" alt="">
+                 style="width: 128px;height: 128px; margin: 0 auto; margin-bottom: 1.25rem;" alt="用户头像">
             {!! Form::open(['url' => route('settings.avatar.update'), 'files' => 'true', 'method' => 'PUT']) !!}
                 <div class="form-group">
                     {!! Form::file('avatar', ['class' => 'form-control']) !!}

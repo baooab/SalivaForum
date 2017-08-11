@@ -67,7 +67,7 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'avatar' => '/images/default-avatar.png',
             'email' => $data['email'],
-            'password' => bcrypt['password'],
+            'password' => bcrypt($data['password']),
             'confirmation_code' => str_random(60),
         ]);
 

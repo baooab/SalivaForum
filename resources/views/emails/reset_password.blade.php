@@ -1,14 +1,14 @@
 @component('mail::message')
-# Reset Password
+# 密码重置
 
-You are receiving this email because we received a password reset request for your account.
+应您的要求，我们给你发来了一封密码重置邮件。请点击下面的链接：
 
 @component('mail::button', ['url' => url(config('app.url').route('password.reset', $token, false))])
-Reset Password
+重置密码
 @endcomponent
 
-If you did not request a password reset, no further action is required.
+如果不是您本人操作，请忽略。
 
-Thanks,<br>
+感谢，<br>
 {{ config('app.name') }}
 @endcomponent

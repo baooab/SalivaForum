@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Laravel开发社区'),
+        'address' => env('MAIL_FROM_ADDRESS', '3183442656@qq.com'),
+        'name' => env('MAIL_FROM_NAME', '乱炖社区'),
     ],
 
     /*

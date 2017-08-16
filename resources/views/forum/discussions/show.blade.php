@@ -89,7 +89,7 @@
                             @endif
                         @endforeach
                     @endif
-                    <i>{{ $discussion->user->name }}</i> {{ $discussion->updated_at }}
+                    <i>{{ $discussion->user->username }}</i> {{ $discussion->updated_at }}
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@
         <div class="row">
             <div class="col-md-9 col-sm-8">
                 <div id="blog-post">
-                    {!! Parsedown::instance()->text($discussion->body) !!}
+                    {!! Parsedown::instance()->setMarkupEscaped(true)->text($discussion->body) !!}
                 </div>
 
                 @if(count($discussion->comments) > 0)
@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">{{ $comment->user->username }} <small>{{ $comment->created_at }}</small></h4>
-                                    {!! Parsedown::instance()->text($comment->body) !!}
+                                    {!! Parsedown::instance()->setMarkupEscaped(true)->text($comment->body) !!}
                                 </div>
                             </div>
                         @endforeach

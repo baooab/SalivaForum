@@ -1,16 +1,16 @@
 @component('mail::message')
-# Welcome to Laravel!
+# 很高兴见到你！
 
-Thanks for joining up with the [Laravel](https://laravel.com) world!
+新朋友，欢迎加入 [乱炖社区](http://www.baooab.com) ！
 
-We just need to confirm your email address so please click the button below to confirm it:
+但开始前，我们需验证您的邮箱：
 
 @component('mail::button', ['url' => route('email.confirm', [$user->email, $user->confirmation_code])])
-Confirm Email Address
+验证邮箱
 @endcomponent
 
-We hope to see you soon on the portal.
+再见哦。
 
-Regards,<br>
+您的，<br>
 {{ config('app.name') }}
 @endcomponent

@@ -34,7 +34,7 @@ class EmailConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->subject('Confirm your Laravel email address')
+        return $this->subject('请验证邮箱地址')
             ->markdown('emails.email_confirmation');
     }
 }

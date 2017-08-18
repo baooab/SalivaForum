@@ -156,6 +156,7 @@
 
 @push('scripts')
     @include('_partials._sticky_scripts')
+    @include('_partials._responsive_table_scripts')
     <script>
         $("#blog-post").find("h2,h3").each(function(i,item) {
             var tag = $(item).get(0).localName;

@@ -77,7 +77,7 @@ Route::group(['prefix' => 'discussion', 'namespace' => 'Forum'], function () {
         ->name('discussion');
     Route::get('{discussion}/edit', 'DiscussionController@edit')
         ->name('discussions.edit');
-    Route::put('{id}', 'DiscussionController@update')
+    Route::match(['put', 'patch'], '/', 'DiscussionController@update')
         ->name('discussions.update');
 });
 

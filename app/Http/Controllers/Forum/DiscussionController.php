@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Forum;
 
+use Auth;
+use Validator;
 use App\User;
 use App\Models\Category;
 use App\Models\Discussion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DiscussionRequest;
 
 class DiscussionController extends Controller
@@ -60,6 +61,8 @@ class DiscussionController extends Controller
             $discussion->categories()->attach($categories);
         }
 
+        session()->put('success', '帖子发布成功！');
+
         return redirect()->route('discussion', ['id' => $discussion->slug]);
     }
 
@@ -72,15 +75,24 @@ class DiscussionController extends Controller
         return view('forum.discussions.edit', compact('discussion', 'categories'));
     }
 
-    public function update(DiscussionRequest $request, $discussion)
+    public function update(Request $request)
     {
+
+        Validator::make($request->all(), [
+            'title' => 'required',
+            'slug' => 'required|exists:discussions,slug',
+            'body' => 'required',
+            'categories' => 'array',
+            'categories.*' => 'exists:categories,id'
+        ])->validate(); 
+
         $data = $request->only('title', 'body');
         $data = array_merge($data, [
             'slug' => str_slug($request->input('slug')),
             'last_user_id' => Auth::id(),
         ]);
 
-        $discussion = Discussion::findOrFail($discussion);
+        $discussion = Auth::user()->discussions()->where('slug', $data['slug'])->first();
 
         $this->authorize('update discussions', $discussion);
 
@@ -90,6 +102,8 @@ class DiscussionController extends Controller
         if ($categories) {
             $discussion->categories()->sync($categories);
         }
+
+        session()->put('success', '帖子更新成功！');
 
         return redirect()->route('discussion', [$data['slug']]);
     }

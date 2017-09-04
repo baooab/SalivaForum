@@ -24,7 +24,7 @@ class DiscussionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title' => 'required|unique:discussions',
             'slug' => 'required',
             'body' => 'required',
             'categories' => 'array',

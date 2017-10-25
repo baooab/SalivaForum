@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Models\Comment;
+use App\Models\Discussion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,10 @@ class CommentController extends Controller
         $data = $request->only('body', 'discussion_id');
         $data = array_merge($data, [
             'user_id' => Auth::id(),
+        ]);
+
+        Discussion::find($data['discussion_id'])->update([
+        	'last_user_id'=> Auth::id()
         ]);
 
         Comment::create($data);

@@ -26,6 +26,10 @@ class Discussion extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function lastUser() {
+        return $this->belongsTo(User::class, 'last_user_id');
+    }
+
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'discussion_category')->withTimestamps();
@@ -43,6 +47,11 @@ class Discussion extends Model
 
     public function getUpdatedAtAttribute($date)
     {
-        return Carbon::parse($date)->diffForHumans();
+        return Carbon::parse($date);
+    }
+
+    public function getCreatedAtAttribute($date)
+    {
+        return Carbon::parse($date);
     }
 }

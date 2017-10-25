@@ -1,13 +1,4 @@
-<style type="text/css">
-    .navbar-form .search {
-        border: none;
-    }
-
-    .navbar-form .search:hover, .navbar-form .search:focus {
-        width: 150%;
-    }
-</style>
-
+<div class="top-line"></div>
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -24,11 +15,6 @@
                 <li><a href="{{ route('collection.overview') }}">采集</a></li>
                 <li><a href="{{ route('search.enter') }}">搜索</a></li>
             </ul>
-            <form class="navbar-form" style="
-                display: none;
-                margin-top: 16px;">
-                <input type="text" class="form-control search" placeholder="搜帖子">
-            </form>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
                     <li><a href="{{ route('login') }}">登录</a></li>

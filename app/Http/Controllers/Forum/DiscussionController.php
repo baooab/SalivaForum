@@ -24,13 +24,13 @@ class DiscussionController extends Controller
         $discussions = Discussion::with('categories')
             ->withCount('comments')
             ->orderBy('updated_at', 'desc')
-            ->paginate(15);
+            ->simplePaginate(15);
 
         $users = User::withCount('discussions')
             ->orderBy('discussions_count', 'desc')
             ->take(10)
             ->get();
-
+            
         return view('forum.discussions.overview', compact('discussions', 'users'));
     }
 

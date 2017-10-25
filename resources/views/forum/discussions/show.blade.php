@@ -4,7 +4,19 @@
     @include('_partials._jumbotron_under_nav_styles')
     <style>
         body {
-            font-size: 15px;
+            font-size: 14px;
+        }
+
+        .media-heading {
+            font-size: 18px;
+        }
+
+        .media-info {
+            font-size: 14px;
+        }
+
+        .media-info .badge {
+            font-size: 12px;
         }
 
         #blog-post img, #blog-comments .media-body img {
@@ -68,28 +80,24 @@
                 <div class="media-left">
                     <a href="#">
                         <img class="media-object img-circle" src="{{ asset($discussion->user->avatar) }}" alt="64x64"
-                             style="width: 64px; height: 64px;">
+                             style="width: 48px; height: 48px;">
                     </a>
                 </div>
                 <div class="media-body">
                     <h3 class="media-heading">
                         {{ $discussion->title }}
-                        @if(Auth::check() && Auth::user()->id == $discussion->user->id)
-                            <a class="btn btn-lg btn-primary pull-right"
-                               href="{{ route('discussions.edit', ['id' => $discussion->slug]) }}" role="button">
-                                修改帖子 »
-                            </a>
+                        @if(count($discussion->categories) > 0)
+                            @foreach($discussion->categories as $category)
+                                <span class="badge">{{ $category->name }}</span>
+                            @endforeach
                         @endif
                     </h3>
-                    @if(count($discussion->categories) > 0)
-                        @foreach($discussion->categories as $category)
-                            <span class="badge">{{ $category->name }}</span>
-                            @if($loop->last)
-                                <br>
-                            @endif
-                        @endforeach
-                    @endif
-                    <i>{{ $discussion->user->username }}</i> {{ $discussion->updated_at }}
+                    <div class="media-info">
+                        {{ $discussion->user->username }} 发布于 {{ $discussion->created_at->diffForHumans() }} 
+                        @if(Auth::check() && Auth::user()->id == $discussion->user->id)
+                            <a href="{{ route('discussions.edit', ['id' => $discussion->slug]) }}" role="button">编辑帖子 »</a>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

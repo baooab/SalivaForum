@@ -5,7 +5,7 @@
 
     .jumbotron h2 .btn {
         position: absolute;
-        margin-top: -6px;
+        margin-top: -2px;
         right: 1rem;
     }
 

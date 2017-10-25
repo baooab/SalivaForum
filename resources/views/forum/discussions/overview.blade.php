@@ -7,10 +7,10 @@
 @section('content')
     <div class="jumbotron">
         <div class="container">
-            <h2>
-                咕噜咕噜乱炖
-                <a class="btn btn-lg btn-primary pull-right" href="{{ route('discussions.create') }}" role="button">发布新帖 »</a>
-            </h2>
+            <p>
+                为不拘一格者
+                <a class="btn btn-md btn-primary pull-right" href="{{ route('discussions.create') }}" role="button">发布新帖 »</a>
+            </p>
         </div>
     </div>
 
@@ -23,10 +23,10 @@
                             <div class="media">
                                 <div class="media-left media-middle">
                                     <img class="media-object img-circle" src="{{ asset($discussion->user->avatar) }}" alt="64x64"
-                                         style="width: 64px; height: 64px;">
+                                         style="width: 48px; height: 48px;">
                                 </div>
-                                <div class="media-body">
-                                    <h3 class="media-heading" style="font-size: 1.718rem;">
+                                <div class="media-body" style="font-size: 12px;">
+                                    <h3 class="media-heading" style="font-size: 15px;">
                                         <a href="{{ route('discussion', ['id' => $discussion->slug] ) }}"
                                            style="display: block;">
                                             {{ $discussion->title }}
@@ -38,20 +38,25 @@
                                         回复
                                         </span>
                                     </div>
-                                    @if(count($discussion->categories) > 0)
-                                        @foreach($discussion->categories as $category)
-                                            <span class="badge">{{ $category->name }}</span>
-                                            @if($loop->last)
-                                                <br>
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                    <i>{{ $discussion->user->username }}</i> {{ $discussion->updated_at }}
+                                    <div class="media-info">
+                                        @if(count($discussion->categories) > 0)
+                                            @foreach($discussion->categories as $category)
+                                                <span class="badge">{{ $category->name }}</span>
+                                            @endforeach
+                                        @endif
+                                        {{ $discussion->user->username }} 发布于 {{ $discussion->created_at->diffForHumans() }}
+                                        @if($discussion->user_id !== $discussion->last_user_id)
+                                            <i class="icon fa fa-fw fa-reply "></i>
+                                            {{ $discussion->lastUser->username }} {{ $discussion->updated_at->diffForHumans() }} 更新
+                                        @elseif ($discussion->updated_at->eq($discussion->created_at))
+                                            , 更新于 {{ $discussion->updated_at->diffForHumans() }}
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 text-center">
                         {{ $discussions->links() }}
                     </div>
                 </div>

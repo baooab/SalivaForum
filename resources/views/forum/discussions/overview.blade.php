@@ -2,6 +2,11 @@
 
 @push('styles')
     @include('_partials._jumbotron_under_nav_styles')
+    <style>
+        .sticky-wrapper strong {
+            font-weight: normal;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -48,7 +53,7 @@
                                         @if($discussion->user_id !== $discussion->last_user_id)
                                             <i class="icon fa fa-fw fa-reply "></i>
                                             {{ $discussion->lastUser->username }} {{ $discussion->updated_at->diffForHumans() }} 更新
-                                        @elseif ($discussion->updated_at->eq($discussion->created_at))
+                                        @elseif (!$discussion->updated_at->eq($discussion->created_at))
                                             , 更新于 {{ $discussion->updated_at->diffForHumans() }}
                                         @endif
                                     </div>

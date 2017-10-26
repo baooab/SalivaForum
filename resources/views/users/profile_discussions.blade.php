@@ -40,7 +40,7 @@
                                 @foreach($chunk as $discussion)
                                     <div class="col-sm-4 col-md-3">
                                         <div class="thumbnail text-center">
-                                            <p class="label text-black"><span class="date">{{ $discussion->updated_at }}</span></p>
+                                            <p class="label text-black"><span class="date">{{ $discussion->updated_at->diffForHumans() }}</span></p>
                                             <h4><a href="{{ route('discussion', [$discussion->slug] ) }}" target="_blank">{{ $discussion->title }}</a></h4>
                                                 <p style="color: #333; text-shadow: 0 0.5px #eee;">
                                                     {{ str_limit($discussion->body, 120) }}

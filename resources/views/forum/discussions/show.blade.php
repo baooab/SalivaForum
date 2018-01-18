@@ -23,6 +23,7 @@
 
         #blog-post img, #blog-comments .media-body img {
             max-width: 100%;
+            max-width: 35em;
         }
 
         /* 帖子目录样式 */

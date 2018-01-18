@@ -3,12 +3,31 @@
 @push('styles')
     @include('_partials._jumbotron_under_nav_styles')
     <style>
-        .sticky-wrapper strong {
-            font-weight: normal;
-        }
-
         .articles {
           margin-top: 2.5em;
+        }
+
+        .media-body {
+          font-size: 12px;
+          vertical-align: middle;
+        }
+
+        .media-body .badge {
+          background: none;
+          color: #8b9ed1;
+          font-family: "Courier new";
+        }
+
+        .media-body .badge:before {
+          content: '#';
+          color: #8b9ed1;
+          font-size: 1.5em;
+          vertical-align: middle;
+        }
+
+        pre code {
+          font-family: "Consolas", "Courier new";
+          font-size: .95em;
         }
     </style>
 @endpush
@@ -25,7 +44,7 @@
                                     <img class="media-object img-circle" src="{{ asset($discussion->user->avatar) }}" alt="64x64"
                                          style="width: 48px; height: 48px;">
                                 </div>
-                                <div class="media-body" style="font-size: 12px;">
+                                <div class="media-body">
                                     <h3 class="media-heading" style="font-size: 15px;">
                                         <a href="{{ route('discussion', ['id' => $discussion->slug] ) }}"
                                            style="display: block;">
@@ -39,17 +58,17 @@
                                         </span>
                                     </div>
                                     <div class="media-info">
-                                        @if(count($discussion->categories) > 0)
-                                            @foreach($discussion->categories as $category)
-                                                <span class="badge">{{ $category->name }}</span>
-                                            @endforeach
-                                        @endif
-                                        {{ $discussion->user->username }} 发布于 {{ $discussion->created_at->diffForHumans() }}
+                                        <strong>{{ $discussion->user->username }}</strong> 发布于 {{ $discussion->created_at->diffForHumans() }}
                                         @if($discussion->user_id !== $discussion->last_user_id)
                                             <i class="icon fa fa-fw fa-reply "></i>
                                             {{ $discussion->lastUser->username }} {{ $discussion->updated_at->diffForHumans() }} 更新
                                         @elseif (!$discussion->updated_at->eq($discussion->created_at))
                                             , 更新于 {{ $discussion->updated_at->diffForHumans() }}
+                                        @endif
+                                        @if(count($discussion->categories) > 0)
+                                            @foreach($discussion->categories as $category)
+                                                <span class="badge">{{ $category->name }}</span>
+                                            @endforeach
                                         @endif
                                     </div>
                                 </div>
@@ -77,8 +96,8 @@
                                 <div class="media-body">
                                     <span class="media-heading" style="display: block; margin-top: 6px;">
                                         <a href="{{ route('profile.discussions', ['username' => $user->username]) }}" style="display: block;">
-                                            <strong>{{ $user->username }}</strong>
-                                            <span style="color: #999;">{{ $user->discussions_count }}篇帖</span>
+                                            <i style="font-style: normal;">{{ $user->username }}</i>
+                                            <span style="color: #999;">{{ $user->discussions_count }}篇文章</span>
                                         </a>
                                     </span>
                                 </div>

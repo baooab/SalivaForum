@@ -17,7 +17,7 @@ class CollectionController extends Controller
 
     public function overview()
     {
-        $links = Link::with('user')->latest('updated_at')->paginate(50);
+        $links = Link::with('user')->latest('updated_at')->paginate(52);
 
         return view('collection.overview', compact('links'));
     }

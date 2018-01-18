@@ -1,5 +1,7 @@
 @extends('layouts.default')
 
+@section('title', '创建采集')
+
 @push('styles')
 <style>
     .navbar {

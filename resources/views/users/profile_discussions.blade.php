@@ -1,5 +1,7 @@
 @extends('layouts.default')
 
+@section('title', $user->username . '的文章')
+
 @push('styles')
 <style>
     .navbar {
@@ -32,11 +34,11 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
-                        <span>{{ $user->username }}的帖子</span>
+                        <span>{{ $user->username }}的文章</span>
                     </div>
                     <div class="panel-body">
                         @forelse ($discussions->chunk(4) as $chunk)
-                            <div class="row"> 
+                            <div class="row">
                                 @foreach($chunk as $discussion)
                                     <div class="col-sm-4 col-md-3">
                                         <div class="thumbnail text-center">
@@ -57,12 +59,12 @@
                                                 </p>
                                         </div>
                                     </div>
-                                @endforeach 
+                                @endforeach
                             </div>
                         @empty
                             <div class="row text-center">
                                 暂时还没有任何内容……
-                            </div>    
+                            </div>
                         @endforelse
                         <div class="row">
                             <div class="col-md-12">

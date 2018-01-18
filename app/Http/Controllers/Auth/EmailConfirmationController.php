@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Auth;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Jobs\SendEmailConfirmation;
 use App\Http\Controllers\Controller;

@@ -1,26 +1,47 @@
 # SalivaForum
 
-乱炖社区 - 基于Laravel5.4
+A forum build by Laravel, Chinese named “乱炖社区”.
 
 ## 下载
 
 ```
 $ git clone https://github.com/baooab/SalivaForum.git
+```
+
+Enter project.
+
+```
 $ cd SalivaForum
 $ cp .env.example .env
+```
+
+Download PHP dependencies.
+
+```
 $ composer install
+```
+
+Generate key.
+
+```
 $ php artisan key:generate
 ```
 
-## 配置
+## Configuration
 
-修改 `.env` 文件。配置数据库连接和邮件（本系统使用QQ邮箱账号发送账号确认&重置密码邮件）。
+Configure database connection & email.
+
+```
+$ cp .env.example .env
+```
+
+`.env`
 
 ```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=your-database-name
+DB_DATABASE=your-database
 DB_USERNAME=your-username
 DB_PASSWORD=your-password
 
@@ -30,24 +51,6 @@ MAIL_PORT=465
 MAIL_USERNAME=xxxxxxxxxx@qq.com
 MAIL_PASSWORD=xxxxxxxxxxxxxxxx
 MAIL_ENCRYPTION=ssl
-MAIL_FROM_ADDRESS=xxxxxxxxxx@qq.com
+MAIL_FROM_ADDRESS=${MAIL_USERNAME}
 MAIL_FROM_NAME=your-app-name
 ```
-
-## 迁移
-
-```
-$ php artisan migrate
-
-// 或者
-
-$ php artisan migrate --seed
-```
-
-## Surfing!
-
-```
-$ php artisan serve
-```
-
-浏览器键入 http://localhost:8000 浏览。

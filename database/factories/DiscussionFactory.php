@@ -1,8 +1,8 @@
 <?php
 
 $factory->define(\App\Models\Discussion::class, function (Faker\Generator $faker) {
-    $user = factory(\App\User::class)->create();
-    $userIds = App\User::pluck('id')->toArray();
+    $user = factory(\App\Models\User::class)->create();
+    $userIds = App\Models\User::pluck('id')->toArray();
 
     return [
         'title' => $faker->text(20),

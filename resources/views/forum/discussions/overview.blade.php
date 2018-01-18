@@ -6,20 +6,15 @@
         .sticky-wrapper strong {
             font-weight: normal;
         }
+
+        .articles {
+          margin-top: 2.5em;
+        }
     </style>
 @endpush
 
 @section('content')
-    <div class="jumbotron">
-        <div class="container">
-            <p>
-                为不拘一格者
-                <a class="btn btn-md btn-primary pull-right" href="{{ route('discussions.create') }}" role="button">发布新帖 »</a>
-            </p>
-        </div>
-    </div>
-
-    <div class="container">
+    <div class="container articles">
         <div class="row">
             <div class="col-md-9">
                 <div class="row">

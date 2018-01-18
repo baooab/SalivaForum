@@ -1,5 +1,7 @@
 @extends('layouts.default')
 
+@section('title', '发布文章')
+
 @section('content')
     <div class="container">
         <div class="row">

@@ -1,5 +1,7 @@
 @extends('layouts.default')
 
+@section('title', $user->username)
+
 @section('content')
     <div class="container">
         <div id="profile">

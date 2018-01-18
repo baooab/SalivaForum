@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Forum;
 
 use Auth;
 use Validator;
-use App\User;
+use App\Models\User;
 use App\Models\Category;
 use App\Models\Discussion;
 use Illuminate\Http\Request;

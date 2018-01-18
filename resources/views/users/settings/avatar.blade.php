@@ -1,5 +1,7 @@
 @extends('layouts.settings')
 
+@section('title', '修改头像')
+
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">更改头像</div>

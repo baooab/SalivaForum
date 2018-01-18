@@ -1,5 +1,7 @@
 @extends('layouts.default')
 
+@section('title', $discussion->title)
+
 @push('styles')
     @include('_partials._jumbotron_under_nav_styles')
     <style>
@@ -93,9 +95,9 @@
                         @endif
                     </h3>
                     <div class="media-info">
-                        {{ $discussion->user->username }} 发布于 {{ $discussion->created_at->diffForHumans() }} 
+                        {{ $discussion->user->username }} 发布于 {{ $discussion->created_at->diffForHumans() }}
                         @if(Auth::check() && Auth::user()->id == $discussion->user->id)
-                            <a href="{{ route('discussions.edit', ['id' => $discussion->slug]) }}" role="button">编辑帖子 »</a>
+                            <a href="{{ route('discussions.edit', ['id' => $discussion->slug]) }}" role="button">编辑文章 »</a>
                         @endif
                     </div>
                 </div>
@@ -107,7 +109,7 @@
         <div class="row">
             <div class="col-md-9 col-sm-8">
                 <div id="blog-post">
-                    {!! Parsedown::instance()->setMarkupEscaped(true)->text($discussion->body) !!}
+                    {!! Parsedown::instance()->text($discussion->body) !!}
                 </div>
 
                 @if(count($discussion->comments) > 0)

@@ -1,5 +1,7 @@
 @extends('layouts.settings')
 
+@section('title', Auth::user()->username . '的信息')
+
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">个人信息</div>

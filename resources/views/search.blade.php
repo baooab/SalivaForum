@@ -1,5 +1,7 @@
 @extends('layouts.blank')
 
+@section('title', '全站搜索')
+
 @push('styles')
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <style>
@@ -36,33 +38,31 @@
 
 @section('content')
 
-    @verbatim
-        <div id="search-box" class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2><a href="/">乱炖</a>搜索 Beta</h2>
-                    <form action="">
-                        <div class="form-group">
-                            <input type="text" id="search" class="search" placeholder="输入内容，即可搜索" v-model="search">
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-12 search-content">
-                    <div class="list-group search-result">
-                        <template v-for="discussion in discussions">
-                            <a class="list-group-item" :href="'/forum/discussion' + discussion.slug" target="_blank">{{ discussion.title }}</a>
-                        </template>
-                        <template v-for="link in links">
-                            <a class="list-group-item" :href="link.url" target="_blank">{{ link.title }}</a>
-                        </template>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endverbatim
+      <div id="search-box" class="container">
+          <div class="row">
+              <div class="col-md-12 text-center">
+                  <h2><a href="/">乱炖</a>搜索</h2>
+                  <form action="">
+                      <div class="form-group">
+                          <input type="text" id="search" class="search" placeholder="输入内容，即可搜索" v-model="search">
+                      </div>
+                  </form>
+              </div>
+              <div class="col-md-12 search-content">
+                  <div class="list-group search-result">
+                      <template v-for="discussion in discussions">
+                          <a class="list-group-item" :href="'{{ route('forum') }}/' + discussion.slug" target="_blank">@{{ discussion.title }}</a>
+                      </template>
+                      <template v-for="link in links">
+                          <a class="list-group-item" :href="link.url" target="_blank">@{{ link.title }}</a>
+                      </template>
+                  </div>
+              </div>
+          </div>
+      </div>
 
     <div class="footer text-center">
-        <p>&copy; 2017</p>
+        <p>&copy; 2018</p>
     </div>
 @endsection
 

@@ -1,5 +1,7 @@
 @extends('layouts.settings')
 
+@section('title', '修改密码')
+
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">密码</div>

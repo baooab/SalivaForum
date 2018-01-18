@@ -1,5 +1,7 @@
 @extends('layouts.default')
 
+@section('title', $user->username)
+
 @section('content')
     <div class="container text-center">
         <h1> 欢迎你，{{ $user->username }}！</h1>

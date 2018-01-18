@@ -16,6 +16,7 @@
                 <li><a href="{{ route('search.enter') }}">搜索</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ route('discussions.create') }}" style="font-weight: bold;font-family: 'Trebuchet MS', san-serif;">发布文章 »</a></li>
                 @if (Auth::guest())
                     <li><a href="{{ route('login') }}">登录</a></li>
                     <li><a href="{{ route('register') }}">注册</a></li>
@@ -25,7 +26,6 @@
                             <img src="{{ asset(Auth::user()->avatar) }}" class="img-circle img-responsive"
                                  style="display:inline-block; width: 32px; height: 32px;" alt="{{ Auth::user()->name }}">
                         </a>
-
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('dashboard') }}">控制面板</a></li>
                             <li><a href="{{ route('settings.profile') }}">设置</a></li>

@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use App\Mail\EmailConfirmation;
 use Illuminate\Contracts\Mail\Mailer;
@@ -16,7 +16,7 @@ class SendEmailConfirmation implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     private $user;
 

@@ -7,7 +7,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', '乱炖社区') }}</title>
+    <title>@yield('title', '首页') | 乱炖社区</title>
     <style>
         * {
             font-family: "Microsoft JhengHei UI", -apple-system, BlinkMacSystemFont,

@@ -11,9 +11,9 @@
           <img class="card-img-top " src="http://baooab.me/storage/uploads/avatars/NBdG7Yah3uaOveMhUzhl3r6c4fWI1naJNTY3NDDC.png" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">个人简介</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="card-text">{{ $user->introduction }}</p>
             <h5 class="card-title">注册于</h5>
-            <p class="card-text">January 01 1901</p>
+            <p class="card-text">{{ $user->created_at->diffForHumans() }}</p>
           </div>
         </div>
     </div>

@@ -7,6 +7,25 @@
 // Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap";
 
+body {
+    font-family: "Microsoft JhengHei UI";
+}
+
+/* header */
+
+.navbar {
+    box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
+    border-top: 4px solid #007bff;
+    margin-bottom: 40px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100% ;
+    height: 60px;
+}
+
 /* stylelint-disable selector-list-comma-newline-after */
 
 .blog-header {

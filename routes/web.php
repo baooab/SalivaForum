@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/', 'PagesController@root')->name('root');
+
 Route::view('/v2/blog', 'v2.blog');
 
 /**
@@ -19,7 +21,7 @@ Route::view('/v2/blog', 'v2.blog');
 
 Route::group(['namespace' => 'Forum'], function () {
 
-    Route::get('/', 'DiscussionController@overview')->name('overview');
+    // Route::get('/', 'DiscussionController@overview')->name('overview');
 
 });
 

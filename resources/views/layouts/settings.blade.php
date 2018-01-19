@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    @include('layouts._footer')
+    @include('layouts._footer-old')
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>

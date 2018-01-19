@@ -11,8 +11,10 @@
 |
 */
 
-// Route::get('/', 'PagesController@root')->name('root');
-//
+Route::get('/', 'PagesController@root')->name('root');
+
+Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
+
 // Route::view('/v2/blog', 'v2.blog');
 
 /**
@@ -21,7 +23,7 @@
 
 Route::group(['namespace' => 'Forum'], function () {
 
-    Route::get('/', 'DiscussionController@overview')->name('overview');
+    Route::get('/overview', 'DiscussionController@overview')->name('overview');
 
 });
 

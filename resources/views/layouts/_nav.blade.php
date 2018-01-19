@@ -24,7 +24,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <img src="{{ asset(Auth::user()->avatar) }}" class="img-circle img-responsive"
-                                 style="display:inline-block; width: 32px; height: 32px;" alt="{{ Auth::user()->name }}">
+                                 style="display:inline-block; width: 32px; height: 32px;" alt="{{ Auth::user()->username }}">
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('dashboard') }}">控制面板</a></li>

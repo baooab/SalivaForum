@@ -2,7 +2,7 @@
 
 A forum build by Laravel, Chinese named “乱炖社区”.
 
-## 下载
+## Installation
 
 ```
 $ git clone https://github.com/baooab/SalivaForum.git

@@ -139,7 +139,7 @@
 
             <div class="bg-white">
               <div class="container text-center py-4">
-                <p class="text-dark-grey">Copyright © <a href="https://laravel-china.org/users/17319" target="_blank" class="text-muted">zhangbao</a>.</p>
+                <p class="text-dark-grey">Copyright © <a href="https://laravel-china.org/users/17319" target="_blank" class="text-muted">zhangbao</a> and his friends.</p>
                 <ul class="footer-links list-unstyled">
                     <li>
                         <a href="http://m.beidian.com/shop/shopkeeper.html?shop_id=240193&utm_source=bd_dpfxhy

@@ -26,7 +26,7 @@
         }
 
         pre code {
-          font-family: "Consolas", "Courier new";
+          font-family: "Consolas", "Courier new" !important;
           font-size: .95em;
         }
     </style>

@@ -86,9 +86,15 @@
                       <a class="nav-link" href="https://github.com/baooab/SalivaForum" target="_blank">源码</a>
                     </li>
                     <li class="nav-item ml-md-2">
-                      <a href="{{ route('login') }}">
-                        <button class="btn btn-white text-blue" type="button">登录</button>
-                      </a>
+                        @if (Auth::guest())
+                            <a href="{{ route('login') }}">
+                                <button class="btn btn-white text-blue" type="button">登录</button>
+                            </a>
+                        @else
+                            <a href="{{ route('logout') }}">
+                                <button class="btn btn-white text-blue" type="button">注销</button>
+                            </a>
+                        @endif
                     </li>
                   </ul>
                 </div>
@@ -98,10 +104,17 @@
             <!-- Banner -->
             <div class="hero-banner bg-faded">
               <div class="container py-6 text-center">
-                <h1>为<strong>不拘一格</strong>者</h1>
-                <p class="lead text-dark-grey">有思想的年轻人到哪里都不太合群，但这不是为了不一样而不一样。</p>
-                <a href="{{ route('register') }}" class="btn btn-lg btn-primary mx-md-3 my-3">现在注册</a>
-                <a href="{{ route('overview') }}" class="btn btn-lg btn-white text-blue mx-md-3 my-3">我先看看</a>
+                @if (Auth::guest())
+                    <h1>为<strong>不拘一格</strong>者</h1>
+                    <p class="lead text-dark-grey">有思想的年轻人到哪里都不太合群，但这不是为了不一样而不一样。</p>
+                    <a href="{{ route('register') }}" class="btn btn-lg btn-primary mx-md-3 my-3">现在注册</a>
+                    <a href="{{ route('overview') }}" class="btn btn-lg btn-white text-blue mx-md-3 my-3">我先看看</a>
+                @else
+                    <h1>欢迎回来</h1>
+                    <p class="lead text-dark-grey">有思想的年轻人到哪里都不太合群，但这不是为了不一样而不一样。</p>
+                    <a href="{{ route('discussions.create') }}" class="btn btn-lg btn-primary mx-md-3 my-3">发布文章</a>
+                    <a href="{{ route('profile.discussions', ['username' => Auth::user()->username]) }}" class="btn btn-lg btn-white text-blue mx-md-3 my-3">我的文章</a>
+                @endif
               </div>
             </div>
 

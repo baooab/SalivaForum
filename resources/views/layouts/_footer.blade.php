@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer py-5">
     <div class="container">
         <p class="float-left">
             由 <a href="https://laravel-china.org/users/17319" target="_blank">zhangbao</a> 设计和编码 <span style="color: #e27575;font-size: 14px;">❤</span>

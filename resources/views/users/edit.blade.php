@@ -3,8 +3,8 @@
 @section('title', '编辑个人资料')
 
 @section('content')
-<div class="container">
-    <div class="col-md-10 col-md-offset-1">
+<div class="row">
+    <div class="col-md-10">
         <div class="card">
             <div class="card-header">
                 <h4 style="margin-bottom: 0;">编辑个人资料</h4>
@@ -13,7 +13,7 @@
             @include('common.error')
 
             <div class="card-body">
-                <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST" accept-charset="UTF-8">
+                <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                     <input type="hidden" name="_method" value="PUT">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -28,6 +28,15 @@
                     <div class="form-group">
                         <label for="introduction-field">个人简介</label>
                         <textarea name="introduction" id="introduction-field" class="form-control" rows="3">{{ old('introduction', $user->introduction ) }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="avatar-label">用户头像</label>
+                        <input type="file" name="avatar">
+
+                        @if($user->avatar)
+                            <br>
+                            <img class="img-thumbnail" src="{{ $user->avatar }}" width="200" />
+                        @endif
                     </div>
                     <div class="well well-sm">
                         <button type="submit" class="btn btn-primary">保存</button>

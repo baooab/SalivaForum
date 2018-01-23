@@ -8,7 +8,7 @@
 
     <div class="col-xl-3 col-lg-3 col-md-3 hidden-sm hidden-xs">
         <div class="card">
-          <img class="card-img-top " src="http://baooab.me/storage/uploads/avatars/NBdG7Yah3uaOveMhUzhl3r6c4fWI1naJNTY3NDDC.png" alt="Card image cap">
+          <img class="card-img-top " src="{{ Auth::user()->avatar }}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">个人简介</h5>
             <p class="card-text">{{ $user->introduction }}</p>
